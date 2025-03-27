@@ -1,4 +1,7 @@
 function handleEditProfile() {
+
+    var datepicker = new Datepicker('#birthday');
+
     var name = document.getElementById("name").textContent
     var inputName = document.getElementById("input-name")
     inputName.value = name
@@ -22,7 +25,11 @@ function handleUpdateProfile() {
 
     var updatedEmail = document.getElementById("input-email").value
     var email = document.getElementById("email")
-    email.textContent = updatedEmail
+    if (validator.isEmail(updatedEmail)) {
+        email.textContent = updatedEmail
+    } else {
+        alert("wrong email format")
+    }
 
     var updatedInterests = document.getElementById("input-interests").value
     var interests = document.getElementById("interests")

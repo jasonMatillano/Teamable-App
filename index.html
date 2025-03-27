@@ -4,7 +4,10 @@
         <title>Teamable</title>
         <link rel="stylesheet" href="style.css" />
         <script src="app.js"></script>
+        <script src="node_modules/validator/validator.min.js"></script>
         <meta charset="utf-8" />
+        <link rel="stylesheet" href="node_modules/Datepicker.js/dist/css/datepicker.material.css">
+        <script src="node_modules/Datepicker.js/dist/datepicker.js"></script>
     </head>
     <body>
         <div id="display-view">
@@ -36,6 +39,10 @@
 
             <span>Interests: </span>
             <input type="text" id="input-interests" placeholder="coding" />
+            <hr />
+
+            <span>Birthday Date: </span>
+            <input type="text" id="birthday">
             <hr />
 
             <button onclick="handleUpdateProfile()">Update Profile</button>
