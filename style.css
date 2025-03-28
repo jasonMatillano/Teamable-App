@@ -30,3 +30,6 @@ input {
 #edit-view {
     display: none;
 }
+.datepicker {
+    margin: 0 auto;
+}

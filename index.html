@@ -2,50 +2,9 @@
 <html>
     <head>
         <title>Teamable</title>
-        <link rel="stylesheet" href="style.css" />
-        <script src="app.js"></script>
-        <script src="node_modules/validator/validator.min.js"></script>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="node_modules/Datepicker.js/dist/css/datepicker.material.css">
-        <script src="node_modules/Datepicker.js/dist/datepicker.js"></script>
     </head>
     <body>
-        <div id="display-view">
-            <h1>User profile</h1>
-            <img src="profile.jpeg">
-            
-            <span>Name: </span><b id="name">Anna Smith</b>
-            <hr />
-
-            <span>Email: </span><b id="email">anna.smith@example.com</b>
-            <hr />
-
-            <span>Interests: </span><b id="interests">coding</b>
-            <hr />
-
-            <button onclick="handleEditProfile()">Edit Profile</button>
-        </div>
-        <div id="edit-view">
-            <h1>User profile</h1>
-            <img src="profile.jpeg">
-            
-            <span>Name: </span>
-            <input type="text" id="input-name" placeholder="Anna Smith"/>
-            <hr />
-
-            <span>Email: </span>
-            <input type="text" id="input-email" placeholder="anna.smith@example.com" />
-            <hr />
-
-            <span>Interests: </span>
-            <input type="text" id="input-interests" placeholder="coding" />
-            <hr />
-
-            <span>Birthday Date: </span>
-            <input type="text" id="birthday">
-            <hr />
-
-            <button onclick="handleUpdateProfile()">Update Profile</button>
-        </div>
+        <div id="app"></div>    
     </body>
 </html>
