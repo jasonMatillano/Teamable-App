@@ -6,6 +6,7 @@
     "@vue/compiler-sfc": "3.2.40",
     "core-js": "3.25.5",
     "express": "5.1.0",
+    "mongodb": "5.0.1",
     "teamable": "file:",
     "vue": "3.2.40"
   },

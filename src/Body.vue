@@ -79,6 +79,7 @@ export default {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
+                // Convert the payload to JSON
                 body: JSON.stringify(payload),
             })
             return await res.json()
