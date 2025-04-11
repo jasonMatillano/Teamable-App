@@ -4,6 +4,9 @@ const express = require('express');
 // Import the MongoDB client
 const { MongoClient } = require('mongodb');
 
+// Import the validator module
+const { isEmptyPayload, isInvalidEmail } = require('./validator');
+
 // Connection URL
 const url = 'mongodb://127.0.0.1:27017';
 const client = new MongoClient(url);
@@ -27,7 +30,7 @@ app.use('/', express.static(__dirname + '/dist'));
 app.get('/get-profile', async(req, res) => {
     // Connect to MongoDB
     await client.connect();
-    console.log('Connected successfully to server');
+    console.log('Connected successfully to MongoDB server');
 
     // initialize database
     const db = client.db(dbName);
@@ -57,13 +60,13 @@ app.post('/update-profile', async (req, res) => {
     console.log(payload)
 
     // Return a JSON response
-    if (!payload.name || !payload.email || !payload.interests) {
-        return res.status(400).send({error: 'invalid request'});
+    if ( isEmptyPayload(payload) || isInvalidEmail(payload)) {
+        return res.status(400).send({error: 'invalid payload, could not update user profile'});
     } else {
 
         // Connect to MongoDB
         await client.connect();
-        console.log('Connected successfully to server');
+        console.log('Connected successfully to MongoDB server');
 
         // initialize database
         const db = client.db(dbName);
