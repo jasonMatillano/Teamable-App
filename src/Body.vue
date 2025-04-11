@@ -49,6 +49,7 @@ export default {
     },
     async created() {
         const userData = await this.fetchUserProfile();
+        console.log(userData)
         this.name = userData.name;
         this.email = userData.email;
         this.interests = userData.interests;

@@ -29,14 +29,25 @@ app.get('/get-profile', async(req, res) => {
     await client.connect();
     console.log('Connected successfully to server');
 
-    // Get data from database
+    // initialize database
+    const db = client.db(dbName);
+    const collection = db.collection(collectionName);
 
-    // Return a JSON response
-    const response = {
-        name: 'John Doe',
-        email: 'a@b.com',
-        interests: 'coding'
+    // Get data from database
+    const result = await collection.findOne({id: 1});
+    console.log(result);
+
+    // close connection
+    client.close();
+
+    response = {}
+
+    if (result!==null) {
+        response.name = result.name;
+        response.email = result.email;
+        response.interests = result.interests;
     }
+
     res.send(response);
 })
 
@@ -45,23 +56,27 @@ app.post('/update-profile', async (req, res) => {
     const payload = req.body
     console.log(payload)
 
-    // Connect to MongoDB
-    await client.connect();
-    console.log('Connected successfully to server');
-
-    // initialize database
-    const db = client.db(dbName);
-    const collection = db.collection(collectionName);
-
-    // save payload data in database
-    await collection.insertOne({_id: 1, name: 'John Doe', email: 'a@b.com', interests: 'coding'});
-    await collection.insertOne({_id: 2, name: 'John 2', email: 'a@b2.com', interests: 'coding2'});
-    
-
     // Return a JSON response
     if (!payload.name || !payload.email || !payload.interests) {
         return res.status(400).send({error: 'invalid request'});
     } else {
+
+        // Connect to MongoDB
+        await client.connect();
+        console.log('Connected successfully to server');
+
+        // initialize database
+        const db = client.db(dbName);
+        const collection = db.collection(collectionName);
+
+        // save payload data in database
+        payload.id = 1
+        const updatedValues = {$set: payload}
+        await collection.updateOne({id: 1}, updatedValues, {upsert: true});
+
+        // close connection
+        client.close();
+
         return res.status(200).send({info: 'update user profile successfully'});
     }
 })
