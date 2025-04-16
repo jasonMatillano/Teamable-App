@@ -30,7 +30,7 @@ app.use('/', express.static(__dirname + '/dist'));
 app.get('/get-profile', async(req, res) => {
     // Connect to MongoDB
     await client.connect();
-    console.log('Connected successfully to MongoDB server');
+    console.log('Connected successfully to MongoDB server from get-profile method');
 
     // initialize database
     const db = client.db(dbName);
@@ -61,12 +61,12 @@ app.post('/update-profile', async (req, res) => {
 
     // Return a JSON response
     if ( isEmptyPayload(payload) || isInvalidEmail(payload)) {
-        return res.status(400).send({error: 'invalid payload, could not update user profile'});
+        return res.status(400).send({error: 'invalid payload, could not update profile'});
     } else {
 
         // Connect to MongoDB
         await client.connect();
-        console.log('Connected successfully to MongoDB server');
+        console.log('Connected successfully to MongoDB server from update-profile method');
 
         // initialize database
         const db = client.db(dbName);
@@ -85,6 +85,11 @@ app.post('/update-profile', async (req, res) => {
 })
 
 // Start the server and listen on port 3000, with a callback to log a message
-app.listen(3000, () => {
+const server = app.listen(3000, () => {
     console.log('listening on port 3000');
 });
+
+module.exports = { 
+    app,
+    server
+}
