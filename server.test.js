@@ -1,7 +1,7 @@
 const { app, server } = require('./server');
 const request = require('supertest');
 
-test("test request with valid payload", async () => {
+test("update-profile test request with valid payload", async () => {
     const payload = {
         name: "test name", 
         email: "email@gmail.com", 
@@ -19,7 +19,7 @@ test("test request with valid payload", async () => {
     server.close();
 })
 
-test("test request with invalid payload", async () => {
+test("update-profile test request with invalid payload", async () => {
     const payload = {};
     const response = await request(app)
             .post('/update-profile')
